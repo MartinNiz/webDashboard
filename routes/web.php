@@ -1,8 +1,8 @@
 <?php
 use Illuminate\Http\Request;
+use App\Http\Controllers\Login;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\ProductController;
-use Illuminate\Support\Facades\Auth;
 
 /*
 |--------------------------------------------------------------------------
@@ -21,17 +21,8 @@ Route::get('/', function (Request $request) {
 })->name('home');
 
 
-//Ruta para autenticar al usuario 
-Route::post('/login', function(Request $request) {
-    $credentials = $request->only('email', 'password');
-    if (Auth::attempt($credentials)) {
-        // Autenticación exitosa, redirigir a la página admin/dashboard
-        return redirect(app()->getLocale()  . '/admin/dashboard');
-    } else {
-        // Autenticación fallida, redirigir de vuelta con un mensaje de error
-        return redirect(app()->getLocale() . '/admin')->with('error', 'Credenciales incorrectas');
-    }
-});
+//Login de usuario para dashboard
+Route::post('/login', [Login::class, 'index']);
 
 // Rutas para vistas multiidiomas
 Route::group(['prefix' => '{locale}', 'middleware' => 'locale'], function () {

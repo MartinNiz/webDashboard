@@ -46,7 +46,7 @@
 
                     <a href="{{ route('admin.products.index' , [app()->getLocale()]) }}" class="nav_link {{ (Route::currentRouteName() == 'admin.products.index') ? 'active' : '' ; }} "> 
                       <i class='bx bx-cart nav_icon'></i> 
-                      <span class="nav_name">{{ __('messages.Products') }}</span> 
+                      <span class="nav_name">{{ __('Products') }}</span> 
                     </a> 
                   </div>
                 </div> 
@@ -54,7 +54,7 @@
                     @csrf
                     <button type="submit" class="bg-transparent border-0 nav_link"> 
                       <i class='bx bx-log-out nav_icon'></i> 
-                      <span class="nav_name">{{ __('messages.Logout') }}</span> 
+                      <span class="nav_name">{{ __('Logout') }}</span> 
                     </button>
                 </form>
             </nav>

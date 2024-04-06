@@ -4,7 +4,7 @@
 
 
 <!-- Contenido -->
-@section('title',  __('messages.Edit') . " " . __('messages.Product'))
+@section('title',  __('Edit') . " " . __('Product'))
 
 
 @section('content')

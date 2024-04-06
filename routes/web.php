@@ -33,8 +33,9 @@ Route::group(['prefix' => '{locale}', 'middleware' => 'locale'], function () {
         return view('web/home');
     })->name('home');
 
-    Route::get('/products', [ProductController::class, 'index'])->name('web.products.index');
-    Route::get('/products/{id}', [ProductController::class, 'show'])->name('web.products.show');
+    // Web Products
+    Route::get('/products', [ProductController::class, 'indexWeb'])->name('products.index');
+    Route::get('/products/{id}', [ProductController::class, 'show'])->name('product.detail');
 
     // Rutas de autenticación de administrador
     Route::group(['prefix' => 'admin', 'middleware' => 'auth'], function () {

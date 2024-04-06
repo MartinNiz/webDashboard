@@ -1,9 +1,9 @@
 @extends('layouts.app')
 
 <!-- SEO -->
-@section('title',  __('messages.webName'))
-@section('descripcion',  __('messages.webDescription'))
-@section('etiquetas',  __('messages.webName'))
+@section('title',  __('webName'))
+@section('descripcion',  __('webDescription'))
+@section('etiquetas',  __('webName'))
 
 <!-- Contenido -->
 @section('content')
@@ -13,7 +13,7 @@
         <div class="col-3">
           <div class="card">
             <div class="card-header">
-              <h4><a href="{{ route('web.product.detail', [app()->getLocale(), $product->id]) }}">{{ $product->nombre }}</a></h4>
+              <h4><a href="{{ route('product.detail', [app()->getLocale(), $product->id]) }}">{{ $product->nombre }}</a></h4>
             </div>
             <div class="card-body">
               <p>{{ $product->descripcion }}</p>

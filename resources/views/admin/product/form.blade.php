@@ -1,6 +1,6 @@
 
 <div class="form-group mb-3">
-  <label class="form-label">{{ __('messages.Name') }}</label>
+  <label class="form-label">{{ __('Name') }}</label>
   <div>
     <input type="text" name="nombre" value="{{ $product->nombre }}" class="form-control">
     {!! $errors->first('nombre', '<div class="invalid-feedback">:message</div>') !!}
@@ -8,21 +8,21 @@
 </div>
 
 <div class="form-group mb-3">
-  <label class="form-label">{{ __('messages.Description') }}</label>
+  <label class="form-label">{{ __('Description') }}</label>
   <div>
     <textarea type="text" name="descripcion" class="form-control" >{{ $product->descripcion }}</textarea>
     {!! $errors->first('descripcion', '<div class="invalid-feedback">:message</div>') !!}
   </div>
 </div>
 <div class="form-group mb-3">
-  <label class="form-label">{{ __('messages.Stock') }}</label>
+  <label class="form-label">{{ __('Stock') }}</label>
   <div>
     <input type="number" name="stock" value="{{ $product->stock }}" class="form-control">
     {!! $errors->first('stock', '<div class="invalid-feedback">:message</div>') !!}
   </div>
 </div>
 <div class="form-group mb-3">
-  <label class="form-label">{{ __('messages.Price') }}</label>
+  <label class="form-label">{{ __('Price') }}</label>
   <div>
     <input type="number" name="price" step="0.1"  value="{{ $product->price }}" class="form-control">
     {!! $errors->first('price', '<div class="invalid-feedback">:message</div>') !!}
@@ -32,8 +32,8 @@
 <div class="form-footer">
     <div class="text-end">
         <div class="d-flex">
-            <a href="{{ route('admin.products.index' , [app()->getLocale()]) }}" class="btn btn-danger">{{ __('messages.Cancel') }}</a>
-            <button type="submit" class="btn btn-primary ms-auto ajax-submit">{{ __('messages.Save') }}</button>
+            <a href="{{ route('admin.products.index' , [app()->getLocale()]) }}" class="btn btn-danger">{{ __('Cancel') }}</a>
+            <button type="submit" class="btn btn-primary ms-auto ajax-submit">{{ __('Save') }}</button>
         </div>
     </div>
 </div>

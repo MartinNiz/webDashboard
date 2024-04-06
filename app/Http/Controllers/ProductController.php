@@ -22,6 +22,21 @@ class ProductController extends Controller
     }
 
     /**
+     * Display a listing of the resource.
+     *
+     * @return \Illuminate\Http\Response
+     */
+    public function indexWeb($lang)
+    {
+        $products = Product::paginate(10);
+
+
+        return view('web.product.list', compact('products'))
+            ->with('i', (request()->input('page', 1) - 1) * $products->perPage());
+    }
+
+
+    /**
      * Show the form for creating a new resource.
      *
      * @return \Illuminate\Http\Response

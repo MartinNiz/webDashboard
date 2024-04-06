@@ -2,7 +2,7 @@
 
 
 <!-- Contenido -->
-@section('title', __('messages.Products'))
+@section('title', __('Products'))
 
 
 @section('content')
@@ -32,12 +32,12 @@
         <table class="table card-table table-vcenter text-nowrap datatable">
           <thead>
             <th></th>
-            <th>{{ __('messages.No') }}</th>
-            <th>{{ __('messages.Name') }}</th>
-            <th>{{ __('messages.Description') }}</th>
-            <th>{{ __('messages.Stock') }}</th>
-            <th>{{ __('messages.Price') }}</th>
-            <th>{{ __('messages.Action') }}</th>
+            <th>{{ __('No') }}</th>
+            <th>{{ __('Name') }}</th>
+            <th>{{ __('Description') }}</th>
+            <th>{{ __('Stock') }}</th>
+            <th>{{ __('Price') }}</th>
+            <th>{{ __('Action') }}</th>
           </thead>
           <tbody>
             @forelse ($products as $product)
@@ -52,7 +52,7 @@
                         <div class="btn-list flex-nowrap">
                             <div class="dropdown">
                                 <button class="btn dropdown-toggle" data-bs-toggle="dropdown">
-                                  {{ __('messages.Action') }}
+                                  {{ __('Action') }}
                                 </button>
                                 <div class="dropdown-menu dropdown-menu-end">
                                   <a class="dropdown-item" href="{{ route('admin.products.edit', [app()->getLocale(), $product->id]) }}">
@@ -61,7 +61,7 @@
                                   <form action="{{ route('admin.products.destroy', [app()->getLocale(), $product->id]) }}" method="POST">
                                     @csrf
                                     @method('DELETE')
-                                    <button type="submit" onclick="if(!confirm(__('messages.DeleteQuestion'))){return false;}" class="dropdown-item text-red"><i class="fa fa-fw fa-trash"></i>
+                                    <button type="submit" class="dropdown-item text-red"><i class="fa fa-fw fa-trash"></i>
                                       Delete
                                     </button>
                                   </form>

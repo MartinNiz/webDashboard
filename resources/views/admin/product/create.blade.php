@@ -2,7 +2,7 @@
 
 
 <!-- Contenido -->
-@section('title',  __('messages.Create') . " " . __('messages.Product'))
+@section('title',  __('Create') . " " . __('Product'))
 
 
 @section('content')

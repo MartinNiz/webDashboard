@@ -1,11 +1,12 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\Admin;
 
 use Illuminate\Http\Request;
+use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Auth;
 
-class Login extends Controller
+class LoginController extends Controller
 {
     public function index(Request $request) {
         $credentials = $request->only('email', 'password');

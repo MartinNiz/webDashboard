@@ -1,12 +1,12 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\Admin;
 
+use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 
-class Logout extends Controller
+class LogoutController extends Controller
 {
-    //
     public function index() 
     {
         auth()->logout();

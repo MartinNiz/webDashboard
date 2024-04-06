@@ -14,7 +14,7 @@
       </div>
 
       <div class="btn-list">
-          <a href="{{ route('products.create', [app()->getLocale()]) }}" class="btn btn-primary d-none d-sm-inline-block">
+          <a href="{{ route('admin.products.create', [app()->getLocale()]) }}" class="btn btn-primary d-none d-sm-inline-block">
               <!-- Download SVG icon from http://tabler-icons.io/i/plus -->
               <svg xmlns="http://www.w3.org/2000/svg" class="icon" width="24" height="24"
                   viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none"
@@ -55,10 +55,10 @@
                                   {{ __('messages.Action') }}
                                 </button>
                                 <div class="dropdown-menu dropdown-menu-end">
-                                  <a class="dropdown-item" href="{{ route('products.edit', [app()->getLocale(), $product->id]) }}">
+                                  <a class="dropdown-item" href="{{ route('admin.products.edit', [app()->getLocale(), $product->id]) }}">
                                     Edit
                                   </a>
-                                  <form action="{{ route('products.destroy', [app()->getLocale(), $product->id]) }}" method="POST">
+                                  <form action="{{ route('admin.products.destroy', [app()->getLocale(), $product->id]) }}" method="POST">
                                     @csrf
                                     @method('DELETE')
                                     <button type="submit" onclick="if(!confirm(__('messages.DeleteQuestion'))){return false;}" class="dropdown-item text-red"><i class="fa fa-fw fa-trash"></i>

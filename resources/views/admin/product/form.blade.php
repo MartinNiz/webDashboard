@@ -32,7 +32,7 @@
 <div class="form-footer">
     <div class="text-end">
         <div class="d-flex">
-            <a href="{{ route('admin.product.list' , [app()->getLocale()]) }}" class="btn btn-danger">{{ __('messages.Cancel') }}</a>
+            <a href="{{ route('admin.products.index' , [app()->getLocale()]) }}" class="btn btn-danger">{{ __('messages.Cancel') }}</a>
             <button type="submit" class="btn btn-primary ms-auto ajax-submit">{{ __('messages.Save') }}</button>
         </div>
     </div>

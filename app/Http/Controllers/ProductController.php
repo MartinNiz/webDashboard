@@ -12,12 +12,12 @@ class ProductController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index($lang,$view)
+    public function index($lang)
     {
         $products = Product::paginate(10);
 
 
-        return view($view, compact('products'))
+        return view('admin.product.list', compact('products'))
             ->with('i', (request()->input('page', 1) - 1) * $products->perPage());
     }
 
@@ -44,7 +44,7 @@ class ProductController extends Controller
 
         $product = Product::create($request->all());
 
-        return redirect()->route('admin.product.list', app()->getLocale())
+        return redirect()->route('admin.products.index', app()->getLocale())
             ->with('success', 'Product created successfully.');
     }
 
@@ -86,13 +86,15 @@ class ProductController extends Controller
      * @param  Product $product
      * @return \Illuminate\Http\Response
      */
-    public function update($lang, Request $request, Product $product)
+    public function update($lang, Request $request, $id)
     {
         request()->validate(Product::$rules);
 
+        $product = Product::findOrFail($id);
+    
         $product->update($request->all());
 
-        return redirect()->route('admin.product.list', $lang)
+        return redirect()->route('admin.products.index', ['locale' => $lang])
             ->with('success', 'Product updated successfully');
     }
 
@@ -104,7 +106,7 @@ class ProductController extends Controller
     public function destroy($lang, $id)
     {
         Product::find($id)->delete();
-        return redirect()->route('admin.product.list', $lang)
+        return redirect()->route('admin.products.index', $lang)
             ->with('success', 'Product deleted successfully');
     }
 }

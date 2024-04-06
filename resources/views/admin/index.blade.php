@@ -39,11 +39,12 @@
                     <span class="nav_logo-name">Bootstrap</span> 
                   </a>
                   <div class="nav_list"> 
-                    <a href="{{ route('dashboard' , [app()->getLocale()]) }}" class="nav_link {{ (Route::currentRouteName() == 'dashboard') ? 'active' : '' ; }} "> 
-                      <i class='bx bx-grid-alt nav_icon'></i> 
-                      <span class="nav_name">Dashboard</span> 
-                    </a> 
-                    <a href="{{ route('admin.product.list' , [app()->getLocale()]) }}" class="nav_link {{ (Route::currentRouteName() == 'admin.product.list') ? 'active' : '' ; }} "> 
+                    <a href="{{ route('admin.dashboard', app()->getLocale()) }}" class="nav_link {{ (Route::currentRouteName() == 'admin.dashboard') ? 'active' : '' }}">
+                        <i class='bx bx-grid-alt nav_icon'></i> 
+                        <span class="nav_name">Dashboard</span> 
+                    </a>
+
+                    <a href="{{ route('admin.products.index' , [app()->getLocale()]) }}" class="nav_link {{ (Route::currentRouteName() == 'admin.products.index') ? 'active' : '' ; }} "> 
                       <i class='bx bx-cart nav_icon'></i> 
                       <span class="nav_name">{{ __('messages.Products') }}</span> 
                     </a> 

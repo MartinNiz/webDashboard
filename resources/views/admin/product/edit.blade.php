@@ -15,11 +15,11 @@
           <div class="col-12">
               <div class="card">
                   <div class="card-body">
-                      <form method="POST" action="{{ route('products.update',[app()->getLocale(), $product->id] ) }}" role="form" enctype="multipart/form-data">
-                        {{ method_field('PATCH') }}
+                    <form method="POST" action="{{ route('admin.products.update', [app()->getLocale(), $product->id]) }}" role="form" enctype="multipart/form-data">
+                        @method('PATCH')
                         @csrf
                         @include('admin.product.form')
-                      </form>
+                    </form>
                   </div>
               </div>
           </div>

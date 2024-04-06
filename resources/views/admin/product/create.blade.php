@@ -13,7 +13,7 @@
           <div class="col-12">
               <div class="card">
                   <div class="card-body">
-                      <form method="POST" action="{{ route('products.store', [app()->getLocale()]) }}" id="ajaxForm" role="form" enctype="multipart/form-data">
+                      <form method="POST" action="{{ route('admin.products.store', [app()->getLocale()]) }}" id="ajaxForm" role="form" enctype="multipart/form-data">
                           @csrf
                           @include('admin.product.form')
                       </form>

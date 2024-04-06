@@ -1,5 +1,6 @@
 <?php
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\ProductController;
 use App\Http\Controllers\Admin\LoginController;
@@ -26,35 +27,37 @@ Route::get('/', function (Request $request) {
 Route::post('/login', [LoginController::class, 'index']);
 Route::post('/logout', [LogoutController::class, 'index'])->name('logout');
 
-// Rutas para vistas multiidiomas
 Route::group(['prefix' => '{locale}', 'middleware' => 'locale'], function () {
-    // Web
+    // Rutas de la aplicación web
     Route::get('/', function () {
         return view('web/home');
     })->name('home');
 
-    // Products
-    Route::get('/products', [ProductController::class, 'index'])->defaults('view', 'web.product.list')->name('web.list');
-    Route::get('/products/{id}', [ProductController::class, 'show'])->name('web.product.detail');
+    Route::get('/products', [ProductController::class, 'index'])->name('web.products.index');
+    Route::get('/products/{id}', [ProductController::class, 'show'])->name('web.products.show');
 
-
-
-    //Admin Login
-    Route::get('admin', function() {
-        return view('admin/login');
-    })->name('admin.login');
-
-    // Rutas que requeren auth (Dashboard)
-    Route::group(['middleware' => 'auth'], function () {
-        // Aquí van las rutas que requieren autenticación
-        Route::get('admin/dashboard', function() {
+    // Rutas de autenticación de administrador
+    Route::group(['prefix' => 'admin', 'middleware' => 'auth'], function () {
+        Route::get('/dashboard', function() {
             return view('admin/dashboard/main');
-        })->name('dashboard');
+        })->name('admin.dashboard');
 
-        Route::resource('admin/products', ProductController::class);
-        // Rutas adicionales para mostrar diferentes vistas
-        Route::get('admin/products', [ProductController::class, 'index'])->defaults('view', 'admin.product.list')->name('admin.product.list');
+        // Rutas de productos de administración
+        Route::get('/products', [ProductController::class, 'index'])->name('admin.products.index');
+        Route::get('/products/create', [ProductController::class, 'create'])->name('admin.products.create');
+        Route::post('/products', [ProductController::class, 'store'])->name('admin.products.store');
+        Route::get('/products/{id}', [ProductController::class, 'edit'])->name('admin.products.edit');
+        Route::patch('/products/{id}', [ProductController::class, 'update'])->name('admin.products.update');
+        Route::delete('/products/{id}', [ProductController::class, 'destroy'])->name('admin.products.destroy');
     });
 
+    // Ruta de inicio de sesión de administrador
+    Route::get('/admin', function() {
+        if (Auth::check()) {
+            $locale = request()->segment(1);
+            return redirect()->route('admin.dashboard',['locale' => $locale] );
+        } else {
+            return view('admin/login');
+        }
+    })->name('admin.login');
 });
-

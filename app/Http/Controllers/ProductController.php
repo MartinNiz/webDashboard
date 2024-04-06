@@ -29,7 +29,7 @@ class ProductController extends Controller
     public function create()
     {
         $product = new Product();
-        return view('product.create', compact('product'));
+        return view('admin.product.create', compact('product'));
     }
 
     /**
@@ -44,7 +44,7 @@ class ProductController extends Controller
 
         $product = Product::create($request->all());
 
-        return redirect()->route('products.index')
+        return redirect()->route('admin.product.list', app()->getLocale())
             ->with('success', 'Product created successfully.');
     }
 
@@ -54,11 +54,14 @@ class ProductController extends Controller
      * @param  int $id
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
+    public function show($lang, $id)
     {
         $product = Product::find($id);
-
-        return view('product.show', compact('product'));
+        
+        return view('web.product.detail', [
+            "product" => $product,
+            "id" => $id,
+        ]);
     }
 
     /**
@@ -67,11 +70,13 @@ class ProductController extends Controller
      * @param  int $id
      * @return \Illuminate\Http\Response
      */
-    public function edit($id)
+    public function edit($lang, $id)
     {
         $product = Product::find($id);
-
-        return view('product.edit', compact('product'));
+        return view('admin.product.edit', [
+            "product" => $product,
+            "id" => $id,
+        ]);
     }
 
     /**
@@ -81,13 +86,13 @@ class ProductController extends Controller
      * @param  Product $product
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Product $product)
+    public function update($lang, Request $request, Product $product)
     {
         request()->validate(Product::$rules);
 
         $product->update($request->all());
 
-        return redirect()->route('products.index')
+        return redirect()->route('admin.product.list', $lang)
             ->with('success', 'Product updated successfully');
     }
 
@@ -96,11 +101,10 @@ class ProductController extends Controller
      * @return \Illuminate\Http\RedirectResponse
      * @throws \Exception
      */
-    public function destroy($id)
+    public function destroy($lang, $id)
     {
-        $product = Product::find($id)->delete();
-
-        return redirect()->route('products.index')
+        Product::find($id)->delete();
+        return redirect()->route('admin.product.list', $lang)
             ->with('success', 'Product deleted successfully');
     }
 }

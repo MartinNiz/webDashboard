@@ -12,8 +12,7 @@
     <title>{{ Config::get('app.name') }} > Admin</title>
 
     <!-- Bootstrap -->
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet"
-        integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
 
     <link rel="stylesheet" href="{{ asset('css/admin.css') }}">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/boxicons@latest/css/boxicons.min.css">
@@ -27,8 +26,9 @@
             <div class="header_toggle"> 
                 <i class='bx bx-menu bx-x' id="header-toggle"></i> 
             </div>
-            <div class="header_img"> 
-                <img src="https://i.imgur.com/hczKIze.jpg" alt=""> 
+            <div>
+                <a href="{{ route(Route::currentRouteName(), (isset($id)) ? ['en', $id] : 'en') }}">EN</a>
+                <a href="{{ route(Route::currentRouteName(), (isset($id)) ? ['es', $id] : 'es') }}">ES</a>
             </div>
         </header>
         <div class="l-navbar show" id="nav-bar">
@@ -59,10 +59,14 @@
             </nav>
         </div>
         <!--Container Main start-->
-        <div class="height-100 bg-light">
-            <h4>@yield('title')</h4>
-
-            @yield('content')
+        <div class="container-fluid">
+            <div class="row">
+                <div class="col-12">
+                    <h4 class="mt-4">@yield('title')</h4>
+                </div>
+    
+                @yield('content')
+            </div>
         </div>
         <!--Container Main end-->
 

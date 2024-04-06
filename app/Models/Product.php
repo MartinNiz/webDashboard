@@ -8,10 +8,10 @@ use Illuminate\Database\Eloquent\Model;
 class Product extends Model
 {
     static $rules = [
-		'nombre' => 'required',
-		'descripcion' => 'required',
-		'stock' => 'required',
-		'price' => 'required',
+      'nombre' => 'required',
+      'descripcion' => 'required',
+      'stock' => 'required',
+      'price' => 'required',
     ];
 
     protected $perPage = 20;

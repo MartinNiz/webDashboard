@@ -33,6 +33,12 @@ Route::group(['prefix' => '{locale}', 'middleware' => 'locale'], function () {
         return view('web/home');
     })->name('home');
 
+    // Products
+    Route::get('/products', [ProductController::class, 'index'])->defaults('view', 'web.product.list')->name('web.list');
+    Route::get('/products/{id}', [ProductController::class, 'show'])->name('web.product.detail');
+
+
+
     //Admin Login
     Route::get('admin', function() {
         return view('admin/login');
@@ -48,7 +54,6 @@ Route::group(['prefix' => '{locale}', 'middleware' => 'locale'], function () {
         Route::resource('admin/products', ProductController::class);
         // Rutas adicionales para mostrar diferentes vistas
         Route::get('admin/products', [ProductController::class, 'index'])->defaults('view', 'admin.product.list')->name('admin.product.list');
-        Route::get('/products', [ProductController::class, 'index'])->defaults('view', 'web.list')->name('web.list');
     });
 
 });

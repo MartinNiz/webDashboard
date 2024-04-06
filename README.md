@@ -2,11 +2,11 @@
 
  - Crear controlador de login para sacar funcion del web.php - ✔
  - Boton en el header del dashboard para cerrar sesion - ✔
- - ABML de productos
+ - ABML de productos - ✔
+ - Subir Imagen en productos
  - Categorias dinamicas
  - Roles para usuarios de dashboard (Admin, moderador)
  - Modulos Dinamicos
-
 
 ## Modulos a Hacer:
 

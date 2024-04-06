@@ -45,10 +45,13 @@
                     </a> 
                   </div>
                 </div> 
-                <a href="#" class="nav_link"> 
-                  <i class='bx bx-log-out nav_icon'></i> 
-                  <span class="nav_name">SignOut</span> 
-                </a>
+                <form action="{{ route('logout') }}" method="POST">
+                    @csrf
+                    <button type="submit" class="bg-transparent border-0 nav_link"> 
+                      <i class='bx bx-log-out nav_icon'></i> 
+                      <span class="nav_name">{{ __('messages.Logout') }}</span> 
+                    </button>
+                </form>
             </nav>
         </div>
         <!--Container Main start-->

@@ -1,6 +1,7 @@
 <?php
 use Illuminate\Http\Request;
 use App\Http\Controllers\Login;
+use App\Http\Controllers\Logout;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\ProductController;
 
@@ -23,6 +24,7 @@ Route::get('/', function (Request $request) {
 
 //Login de usuario para dashboard
 Route::post('/login', [Login::class, 'index']);
+Route::post('/logout', [Logout::class, 'index'])->name('logout');
 
 // Rutas para vistas multiidiomas
 Route::group(['prefix' => '{locale}', 'middleware' => 'locale'], function () {

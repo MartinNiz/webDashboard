@@ -6,5 +6,6 @@ return [
   'Password' => 'Contraseña',
   'Email' => 'Correo electronico',
   'Login' => 'Ingresar',
+  'Logout' => 'Cerrar sesión',
   'Send' => 'Enviar',
 ];

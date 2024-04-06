@@ -22,12 +22,16 @@
 
 <body>
 
-    <body id="body-pd">
-        <header class="header" id="header">
-            <div class="header_toggle"> <i class='bx bx-menu' id="header-toggle"></i> </div>
-            <div class="header_img"> <img src="https://i.imgur.com/hczKIze.jpg" alt=""> </div>
+    <body id="body-pd" class="body-pd">
+        <header class="header body-pd" id="header">
+            <div class="header_toggle"> 
+                <i class='bx bx-menu bx-x' id="header-toggle"></i> 
+            </div>
+            <div class="header_img"> 
+                <img src="https://i.imgur.com/hczKIze.jpg" alt=""> 
+            </div>
         </header>
-        <div class="l-navbar" id="nav-bar">
+        <div class="l-navbar show" id="nav-bar">
             <nav class="nav">
                 <div> 
                   <a href="#" class="nav_logo"> 
@@ -41,7 +45,7 @@
                     </a> 
                     <a href="{{ route('admin.product.list' , [app()->getLocale()]) }}" class="nav_link {{ (Route::currentRouteName() == 'admin.product.list') ? 'active' : '' ; }} "> 
                       <i class='bx bx-cart nav_icon'></i> 
-                      <span class="nav_name">Products</span> 
+                      <span class="nav_name">{{ __('messages.Products') }}</span> 
                     </a> 
                   </div>
                 </div> 

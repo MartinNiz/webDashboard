@@ -13,6 +13,10 @@ class SetLocale
             app()->setLocale($request->segment(1));
         }
 
+        // una vez que seteamos el locale lo olvidamos 
+        // Esto se hace para evitar que en los controladores y en todas las vistas tengamos como primer parametro el lenguaje
+        $request->route()->forgetParameter('locale');
+
         return $next($request);
     }
 }

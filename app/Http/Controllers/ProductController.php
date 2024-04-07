@@ -12,7 +12,7 @@ class ProductController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index($lang)
+    public function index()
     {
         $products = Product::paginate(10);
 
@@ -26,7 +26,7 @@ class ProductController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function indexWeb($lang)
+    public function indexWeb()
     {
         $products = Product::paginate(10);
 
@@ -69,7 +69,7 @@ class ProductController extends Controller
      * @param  int $id
      * @return \Illuminate\Http\Response
      */
-    public function show($lang, $id)
+    public function show($id)
     {
         $product = Product::find($id);
         
@@ -85,7 +85,7 @@ class ProductController extends Controller
      * @param  int $id
      * @return \Illuminate\Http\Response
      */
-    public function edit($lang, $id)
+    public function edit($id)
     {
         $product = Product::find($id);
         return view('admin.product.edit', [
@@ -101,7 +101,7 @@ class ProductController extends Controller
      * @param  Product $product
      * @return \Illuminate\Http\Response
      */
-    public function update($lang, Request $request, $id)
+    public function update(Request $request, $id)
     {
         request()->validate(Product::$rules);
 
@@ -109,7 +109,7 @@ class ProductController extends Controller
     
         $product->update($request->all());
 
-        return redirect()->route('admin.products.index', ['locale' => $lang])
+        return redirect()->route('admin.products.index', app()->getLocale())
             ->with('success', 'Product updated successfully');
     }
 
@@ -118,10 +118,10 @@ class ProductController extends Controller
      * @return \Illuminate\Http\RedirectResponse
      * @throws \Exception
      */
-    public function destroy($lang, $id)
+    public function destroy($id)
     {
         Product::find($id)->delete();
-        return redirect()->route('admin.products.index', $lang)
+        return redirect()->route('admin.products.index', app()->getLocale())
             ->with('success', 'Product deleted successfully');
     }
 }

@@ -5,6 +5,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\ProductController;
 use App\Http\Controllers\Admin\LoginController;
 use App\Http\Controllers\Admin\LogoutController;
+use App\Http\Controllers\ImagenController;
 
 /*
 |--------------------------------------------------------------------------
@@ -42,6 +43,8 @@ Route::group(['prefix' => '{locale}', 'middleware' => 'locale'], function () {
         Route::get('/dashboard', function() {
             return view('admin/dashboard/main');
         })->name('admin.dashboard');
+
+        Route::post('/images', [ImagenController::class, 'store'])->name('admin.images');
 
         // Rutas de productos de administración
         Route::get('/products', [ProductController::class, 'index'])->name('admin.products.index');

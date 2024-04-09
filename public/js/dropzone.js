@@ -8,13 +8,34 @@ myDropzone = new Dropzone("#image-gallery",{
     headers: {
         'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
     },
-    removedfile:true,
     maxFilesize: 10000000,
+    addRemoveLinks: true, 
     acceptedFiles: '.png,.jpg,.jpeg,.gif',
-    success: function (file, response) {
-        document.querySelector('input[name="image"]').value = response.image;
+    sending: function (file, xhr, formData) {
+        // Agrega el ID del producto a los datos enviados con la imagen
+        formData.append('product_id', $('#product_id').val()); // Suponiendo que tengas un campo de entrada hidden con el ID del producto en tu formulario
     },
-    removedfile: function(){
-        document.querySelector('input[name="image"]').value = '';
-    }
+    success: function (file, response) {
+        console.log(response.image)
+    },
+});
+
+myDropzone.on("removedfile", function(file) {
+    // Envía una solicitud AJAX para eliminar la imagen
+    $.ajax({
+        url: deleteRoute, // Ruta para eliminar la imagen
+        type: 'DELETE',
+        headers: {
+            'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+        },
+        data: {
+            path: file.name // Envía la ruta de la imagen a eliminar
+        },
+        success: function(response) {
+            console.log(response);
+        },
+        error: function(xhr) {
+            console.error(xhr);
+        }
+    });
 });

@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Product;
+use App\Models\ProductImage;
 use Illuminate\Http\Request;
 
 class ProductController extends Controller
@@ -88,6 +89,8 @@ class ProductController extends Controller
     public function edit($id)
     {
         $product = Product::find($id);
+        $product->images = ProductImage::where('product_id', $id)->get();
+
         return view('admin.product.edit', [
             "product" => $product,
             "id" => $id,

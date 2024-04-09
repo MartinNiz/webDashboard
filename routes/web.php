@@ -44,7 +44,8 @@ Route::group(['prefix' => '{locale}', 'middleware' => 'locale'], function () {
             return view('admin/dashboard/main');
         })->name('admin.dashboard');
 
-        Route::post('/images', [ImagenController::class, 'store'])->name('admin.images');
+        Route::post('/images/store', [ImagenController::class, 'store'])->name('admin.images.store');
+        Route::delete('/images/destroy', [ImagenController::class, 'destroy'])->name('admin.images.destroy');
 
         // Rutas de productos de administración
         Route::get('/products', [ProductController::class, 'index'])->name('admin.products.index');

@@ -8,18 +8,22 @@
 <script src="https://unpkg.com/dropzone@5/dist/min/dropzone.min.js"></script>
 {{-- Guardamos la ruta de subir imagen en una url --}}
 <script>
-    var uploadRoute = "{{ route('admin.images',  [app()->getLocale()]) }}";
+    var uploadRoute = "{{ route('admin.images.store',  [app()->getLocale()]) }}";
+    var deleteRoute = "{{ route('admin.images.destroy',  [app()->getLocale()]) }}";
 </script>
 {{-- Cargamos el dropzone --}}
 <script src="{{ asset('js/dropzone.js') }}"></script>
 {{-- Si el producto ya tiene imagen la cargamos al dropzone --}}
-<script>
-    // Agregar imagen existente al Dropzone
-    var mockFile = { name: "{{ $product->image }}", size: {{ filesize(public_path('uploads/' . $product->image)) }}  };
-    myDropzone.emit("addedfile", mockFile);
-    myDropzone.emit("thumbnail", mockFile, "{{ asset('uploads/' . $product->image) }}");
-    myDropzone.emit("complete", mockFile);
-</script>
+@if(sizeof($product->images)>0)
+    @foreach ($product->images as $image)
+        <script>
+            var mockFile = { name: "{{ $image->path }}", size: {{ filesize(public_path('uploads/' . $image->path)) }}  };
+            myDropzone.emit("addedfile", mockFile);
+            myDropzone.emit("thumbnail", mockFile, "{{ asset('uploads/' . $image->path) }}");
+            myDropzone.emit("complete", mockFile);
+        </script>
+    @endforeach
+@endif
 @endpush
 
 <!-- Contenido -->

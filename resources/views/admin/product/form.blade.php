@@ -30,13 +30,14 @@
 </div>
 
 <div class="form-group mb-3">
-  <label class="form-label">{{ __('Image') }}</label>
+  <label class="form-label">{{ __('Images gallery') }}</label>
   <div id="image-gallery" class="dropzone">
     <div class="dz-message" data-dz-message><span>{{ __("Add images to gallery") }}</span></div>
   </div>
 </div>
 
 <input type="hidden" name="image" value="{{ $product->image }}">
+<input type="hidden" id="product_id" value="{{ $product->id }}">
 
 <div class="form-footer">
     <div class="text-end">
